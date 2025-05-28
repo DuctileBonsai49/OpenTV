@@ -3,151 +3,184 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>OpenTV</title>
+  <title>OpenTV – Alex Gaming Studios</title>
   <style>
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: #f8f8f8;
-      color: #333;
+      background: #111;
+      color: #fff;
       display: flex;
       flex-direction: column;
       align-items: center;
+    }
+
+    header {
+      padding: 20px;
+      text-align: center;
     }
 
     .logo {
-      max-width: 180px;
-      margin-top: 30px;
+      max-height: 70px;
+      margin-bottom: 10px;
     }
 
     h1 {
-      margin: 10px 0;
+      font-size: 1.8em;
     }
 
-    .container {
-      text-align: center;
-      margin-top: 20px;
+    .verified {
+      display: inline-flex;
+      align-items: center;
+      margin-top: 5px;
+      font-size: 1.2em;
     }
 
-    .stream-box {
-      margin: 30px;
+    .verified img {
+      height: 20px;
+      margin-left: 6px;
+    }
+
+    .video-box {
+      margin-top: 30px;
+      width: 100%;
+      max-width: 400px;
+      aspect-ratio: 9/16;
+      background: black;
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
     }
 
     video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .controls {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .button {
+      padding: 10px 20px;
+      background: #1db954;
+      border: none;
+      color: white;
+      border-radius: 6px;
+      font-size: 1em;
+      margin: 5px;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background: #169947;
+    }
+
+    .mediathek {
+      margin-top: 40px;
+      text-align: center;
       width: 90%;
+      max-width: 700px;
+    }
+
+    .mediathek h2 {
+      margin-bottom: 10px;
+    }
+
+    .mediathek video {
+      width: 100%;
       max-width: 600px;
-      border: 2px solid #ccc;
-      border-radius: 8px;
+      margin: 10px 0;
+      border-radius: 12px;
     }
 
     footer {
-      margin-top: 60px;
-      padding: 20px;
-      background: #eee;
+      margin-top: 50px;
       font-size: 0.9em;
-      text-align: center;
-      width: 100%;
+      color: #ccc;
     }
 
-    .login-footer {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 10px;
+    .login {
+      margin-top: 20px;
     }
 
-    .login-footer input, .login-footer button {
-      width: 200px;
+    .login input, .login button {
       margin: 5px;
       padding: 8px;
+      border: none;
+      border-radius: 4px;
     }
 
     .hidden {
       display: none;
     }
-
-    .mediathek {
-      margin: 40px 0;
-      width: 90%;
-      max-width: 800px;
-    }
-
-    .mediathek video {
-      margin: 10px 0;
-    }
-
-    .button {
-      padding: 10px 20px;
-      background: #48a23f;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      margin: 10px 0;
-    }
-
-    .button:hover {
-      background: #3c8a34;
-    }
   </style>
 </head>
 <body>
 
-  <!-- Logo -->
-  <img src="logo.png" alt="Alex Hürtgen Logo" class="logo" />
+  <header>
+    <img src="logo.png" class="logo" alt="Alex Hürtgen Logo" />
+    <h1>OpenTV Livestream</h1>
+    <div class="verified">
+      Alex Gaming Studios
+      <img src="verified.png" alt="Verifiziert" />
+    </div>
+  </header>
 
-  <div class="container">
-    <h1>Willkommen bei OpenTV</h1>
-    <p>OpenTV ist Ihre Plattform für unabhängige Livestreams & Mediathek.</p>
+  <div class="video-box">
+    <video id="liveVideo" autoplay muted playsinline></video>
+  </div>
 
-    <div id="streamArea" class="hidden">
-      <div class="stream-box">
-        <h2>Live Stream</h2>
-        <video id="liveVideo" autoplay muted></video><br />
-        <button class="button" onclick="startRecording()">Aufnahme starten</button>
-        <button class="button" onclick="stopRecording()">Stoppen & speichern</button>
-      </div>
+  <div class="controls hidden" id="streamControls">
+    <button class="button" onclick="startRecording()">🎥 Aufnahme starten</button>
+    <button class="button" onclick="stopRecording()">🛑 Stoppen & speichern</button>
+  </div>
 
-      <div class="mediathek">
-        <h2>Mediathek</h2>
-        <div id="mediathekContent"></div>
-      </div>
+  <div class="login" id="loginArea">
+    <form onsubmit="login(event)">
+      <input type="text" id="username" placeholder="Benutzername" required>
+      <input type="password" id="password" placeholder="Passwort" required>
+      <button class="button">Einloggen & Stream starten</button>
+    </form>
+  </div>
+
+  <div class="mediathek">
+    <h2>Mediathek</h2>
+    <div id="mediathekContent">
+      <!-- Aufgenommene Videos werden hier eingefügt -->
     </div>
   </div>
 
-  <!-- Footer mit unauffälligem Login -->
   <footer>
-    <form id="loginForm" class="login-footer">
-      <input type="text" id="username" placeholder="Benutzername" required />
-      <input type="password" id="password" placeholder="Passwort" required />
-      <button type="submit">Login</button>
-    </form>
+    © 2025 Alex Gaming Studios™ – OpenTV - sponsored by  &reg
+    <br><small>Livestream starten? <a href="#" onclick="document.getElementById('loginArea').scrollIntoView()">Hier anmelden</a></small>
   </footer>
 
   <script>
-    const loginForm = document.getElementById('loginForm');
-    const streamArea = document.getElementById('streamArea');
-    const mediathek = document.getElementById('mediathekContent');
-    const liveVideo = document.getElementById('liveVideo');
-
     let mediaRecorder;
     let recordedChunks = [];
 
-    loginForm.addEventListener('submit', function(e) {
+    const liveVideo = document.getElementById('liveVideo');
+    const streamControls = document.getElementById('streamControls');
+    const mediathek = document.getElementById('mediathekContent');
+
+    function login(e) {
       e.preventDefault();
       const user = document.getElementById('username').value;
       const pw = document.getElementById('password').value;
 
-      if (user === 'AH' && pw === 'AAaa2211') {
-        loginForm.classList.add('hidden');
-        streamArea.classList.remove('hidden');
-        startStream();
+      if (user === "AH" && pw === "AAaa2211") {
+        document.getElementById('loginArea').classList.add('hidden');
+        streamControls.classList.remove('hidden');
+        startCamera();
       } else {
-        alert('Falsche Zugangsdaten!');
+        alert("Zugangsdaten falsch!");
       }
-    });
+    }
 
-    function startStream() {
+    function startCamera() {
       navigator.mediaDevices.getUserMedia({ video: true, audio: true })
         .then(stream => {
           liveVideo.srcObject = stream;
@@ -158,26 +191,28 @@
           };
 
           mediaRecorder.onstop = () => {
-            const blob = new Blob(recordedChunks, { type: 'video/webm' });
-            const videoURL = URL.createObjectURL(blob);
-            const vid = document.createElement('video');
-            vid.src = videoURL;
-            vid.controls = true;
-            vid.width = 600;
-            mediathek.appendChild(vid);
+            const blob = new Blob(recordedChunks, { type: "video/webm" });
+            const url = URL.createObjectURL(blob);
+            const video = document.createElement("video");
+            video.src = url;
+            video.controls = true;
+            mediathek.prepend(video);
             recordedChunks = [];
           };
+        }).catch(err => {
+          alert("Zugriff auf Kamera verweigert.");
+          console.error(err);
         });
     }
 
     function startRecording() {
-      if (mediaRecorder) {
+      if (mediaRecorder && mediaRecorder.state === "inactive") {
         mediaRecorder.start();
       }
     }
 
     function stopRecording() {
-      if (mediaRecorder && mediaRecorder.state === 'recording') {
+      if (mediaRecorder && mediaRecorder.state === "recording") {
         mediaRecorder.stop();
       }
     }
