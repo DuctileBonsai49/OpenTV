@@ -5,7 +5,6 @@
 
 ## ✨ Features
 
-- 🔐 Login-System (User: `AH` / Passwort: `AAaa2211`)
 - 🎥 Live-Streaming direkt per Webcam
 - 💾 Automatische Speicherung der Streams
 - 📁 Eigene Mediathek mit Video-Wiedergabe
