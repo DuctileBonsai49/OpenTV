@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OpenTV Livestream</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="container">
+    <img src="assets/logo.png" class="logo" alt="Logo">
+    <h2>Livekamera</h2>
+    <video id="videoPreview" autoplay muted></video>
+    <div class="controls">
+      <button onclick="startRecording()">🎬 Start</button>
+      <button onclick="stopRecording()">⏹️ Stop</button>
+    </div>
+    <a href="mediathek.html">📁 Zur Mediathek</a>
+  </div>
+  <script src="scripts/stream.js"></script>
+</body>
+</html>
